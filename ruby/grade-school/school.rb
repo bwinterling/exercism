@@ -10,8 +10,8 @@ class School
     db[grade] += [name]
   end
 
-  def grade(num)
-    db[num]
+  def grade(number)
+    db[number]
   end
 
   def sort
