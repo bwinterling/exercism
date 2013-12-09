@@ -1,11 +1,7 @@
-require 'pry'
-
 class ETL
   def self.transform(original_data)
-    transformed = {}
-    original_data.each { |key, value_array|
-      value_array.each { |word| transformed[word.downcase] = key }
-    }
-    transformed
+    original_data.each_with_object({}) do |(key, values), new_data|
+      values.each { |word| new_data[word.downcase] = key }
+    end
   end
 end
