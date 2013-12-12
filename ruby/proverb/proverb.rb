@@ -13,14 +13,11 @@ class Proverb
   end
 
   def build_pairs
-    things_wanted = chain.dup
-    chain.shift
-    things_wanted.zip(chain)
+    chain.zip(chain[1..-1])
   end
 
   def assemble_lines(pairs)
-    pairs.pop
-    pairs.each do |pair|
+    pairs[0..-2].each do |pair|
       @proverb += "For want of a #{pair[0]} the #{pair[1]} was lost.\n"
     end
     @proverb + proverb_last_line
