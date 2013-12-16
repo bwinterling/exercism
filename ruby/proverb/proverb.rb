@@ -5,26 +5,22 @@ class Proverb
   def initialize(*chain, qualifier: nil)
     @chain = chain
     @qualifier = qualifier
-    @proverb = ""
   end
 
   def to_s
-    assemble_lines(build_pairs)
+    assemble_the_story(chain) + add_the_big_finish
   end
 
-  def build_pairs
-    chain.zip(chain[1..-1])
+private
+
+  def assemble_the_story(chain)
+    chain.each_cons(2).map do |new_thing, thing_i_already_had|
+      "For want of a #{new_thing} the #{thing_i_already_had} was lost.\n"
+    end.join
   end
 
-  def assemble_lines(pairs)
-    pairs[0..-2].each do |pair|
-      @proverb += "For want of a #{pair[0]} the #{pair[1]} was lost.\n"
-    end
-    @proverb + proverb_last_line
-  end
-
-  def proverb_last_line
-    "And all for the want of a #{qualifier} nail.".gsub("  ", " ")
+  def add_the_big_finish
+    "And all for the want of a #{qualifier} nail.".squeeze(" ")
   end
 
 end

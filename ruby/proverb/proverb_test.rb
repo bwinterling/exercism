@@ -58,4 +58,9 @@ class ProverbTest < MiniTest::Test
     assert_equal expected, proverb.to_s
   end
 
+  def test_proverb_is_same_each_time
+    proverb = Proverb.new('nail', 'shoe')
+    assert_equal proverb.to_s, proverb.to_s
+  end
+
 end
