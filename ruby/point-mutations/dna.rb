@@ -7,9 +7,9 @@ class DNA
   end
 
   def hamming_distance(second_strand)
-    delta = shared_strand_range(second_strand).inject(0) { |mem, index|
-      first_strand[index] != second_strand[index] ? mem + 1 : mem
-    }
+    shared_strand_range(second_strand).count do |index|
+      first_strand[index] != second_strand[index]
+    end
   end
 
   def shared_strand_range(second_strand)

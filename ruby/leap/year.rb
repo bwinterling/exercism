@@ -22,7 +22,7 @@ private
     year_divisible_by(400)
   end
 
-  def year_divisible_by(num)
+  def divisible_by?(num)
     year % num == 0
   end
 end

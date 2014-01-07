@@ -8,12 +8,12 @@ class Proverb
   end
 
   def to_s
-    assemble_the_story(chain) + add_the_big_finish
+    assemble_the_story + add_the_big_finish
   end
 
 private
 
-  def assemble_the_story(chain)
+  def assemble_the_story
     chain.each_cons(2).map do |new_thing, thing_i_already_had|
       "For want of a #{new_thing} the #{thing_i_already_had} was lost.\n"
     end.join
