@@ -1,5 +1,3 @@
-require 'pry'
-
 class Bst
   attr_reader :data, :left, :right
 

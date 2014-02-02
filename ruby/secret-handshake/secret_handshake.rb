@@ -1,5 +1,3 @@
-require 'pry'
-
 class SecretHandshake
   attr_reader :binary
 
@@ -8,11 +6,11 @@ class SecretHandshake
   end
 
   def clean_input(input)
-    if input.kind_of? Integer
-      input.to_s(2).chars.reverse
-    else
-      []
-    end
+    input.kind_of?(Integer) ? to_binary(input) : []
+  end
+
+  def to_binary(input)
+    input.to_s(2).chars.reverse
   end
 
   def output
@@ -25,10 +23,10 @@ class SecretHandshake
   end
 
   def commands
-    reverse? ? reverse_code : code
+    reverse_order? ? code.reverse : code
   end
 
-  def reverse?
+  def reverse_order?
     binary.length == 5
   end
 
@@ -37,9 +35,4 @@ class SecretHandshake
       output[i] if binary[i] == "1"
     }.compact
   end
-
-  def reverse_code
-    code.reverse
-  end
-
 end
