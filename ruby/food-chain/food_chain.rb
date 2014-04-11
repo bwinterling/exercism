@@ -10,26 +10,37 @@ class FoodChainSong
   end
 
   def assemble_parts
-    intro + verses[verse_number] + close
+    intro + exclamation + reason + close
   end
 
   def intro
-    verse_number > 2 ? intro_2 = exclamation : intro_2 = ""
-    "I know an old lady who swallowed a " + animal + ".\n" + intro_2
+    "I know an old lady who swallowed a #{animal}.\n"
   end
 
   def exclamation
     {
-      3 => "How absurd to swallow a "
-    }[verse_number] + animal + "!\n"
-  end
-
-  def verses
-    {
       1 => "",
       2 => "It wriggled and jiggled and tickled inside her.\n",
-      3 => "She swallowed the bird to catch the spider that wriggled and jiggled and tickled inside her.\n"
-    }
+      3 => "How absurd to swallow a #{animal}!\n",
+      4 => "Imagine that, to swallow a #{animal}!\n",
+      5 => "What a hog, to swallow a #{animal}!\n",
+      6 => "Just opened her throat and swallowed a #{animal}!\n",
+      7 => "I don't know how she swallowed a #{animal}!\n",
+      8 => ""
+    }[verse_number]
+  end
+
+  def reason
+    {
+      1 => "",
+      2 => "",
+      3 => "She swallowed the bird to catch the spider that wriggled and jiggled and tickled inside her.\n",
+      4 => "",
+      5 => "",
+      6 => "",
+      7 => "",
+      8 => ""
+    }[verse_number]
   end
 
   def close
@@ -44,11 +55,9 @@ end
 # Intro (verse dependant animal) (1-8)
 # "I know an old lady who swallowed a cow.\n" +
 
-# Exclamation (verse 3-7)
-# "I don't know how she swallowed a cow!\n" +
-
-# Reason (verse 2)
-# "It wriggled and jiggled and tickled inside her.\n"
+# Exclamation (verse 2-7)
+# "It wriggled and jiggled and tickled inside her.\n" (2)
+# various + (3-7)
 
 # Reasons (verse 3-7)
 # "She swallowed the cow to catch the goat.\n" +
