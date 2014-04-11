@@ -35,41 +35,22 @@ class FoodChainSong
       1 => "",
       2 => "",
       3 => "She swallowed the bird to catch the spider that wriggled and jiggled and tickled inside her.\n",
-      4 => "",
-      5 => "",
-      6 => "",
-      7 => "",
+      4 => "She swallowed the cat to catch the bird.\nShe swallowed the bird to catch the spider that wriggled and jiggled and tickled inside her.\n",
+      5 => "She swallowed the dog to catch the cat.\nShe swallowed the cat to catch the bird.\nShe swallowed the bird to catch the spider that wriggled and jiggled and tickled inside her.\n",
+      6 => "She swallowed the goat to catch the dog.\nShe swallowed the dog to catch the cat.\nShe swallowed the cat to catch the bird.\nShe swallowed the bird to catch the spider that wriggled and jiggled and tickled inside her.\n",
+      7 => "She swallowed the cow to catch the goat.\nShe swallowed the goat to catch the dog.\nShe swallowed the dog to catch the cat.\nShe swallowed the cat to catch the bird.\nShe swallowed the bird to catch the spider that wriggled and jiggled and tickled inside her.\n",
       8 => ""
     }[verse_number]
   end
 
   def close
     close = ""
-    close << "She swallowed the spider to catch the fly.\n" if verse_number > 1
-    close << "I don't know why she swallowed the fly. Perhaps she'll die.\n"
+    close << "She swallowed the spider to catch the fly.\n" if verse_number > 1 && verse_number < 8
+    close << "I don't know why she swallowed the fly. Perhaps she'll die." if verse_number < 8
+    close << "She's dead, of course!" if verse_number == 8
+    close + "\n"
   end
-
 end
-
-
-# Intro (verse dependant animal) (1-8)
-# "I know an old lady who swallowed a cow.\n" +
-
-# Exclamation (verse 2-7)
-# "It wriggled and jiggled and tickled inside her.\n" (2)
-# various + (3-7)
-
-# Reasons (verse 3-7)
-# "She swallowed the cow to catch the goat.\n" +
-# "She swallowed the goat to catch the dog.\n" +
-# "She swallowed the dog to catch the cat.\n" +
-# "She swallowed the cat to catch the bird.\n" +
-# "She swallowed the bird to catch the spider that wriggled and jiggled and tickled inside her.\n"
-
-# Close (1-7)
-# "She swallowed the spider to catch the fly.\n" + (verse 2+)
-# "I don't know why she swallowed the fly. Perhaps she'll die.\n" (1-7)
-# "She's dead, of course!\n" (8)
 
 class Animal
   def self.for(verse)

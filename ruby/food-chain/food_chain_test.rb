@@ -36,7 +36,6 @@ class FoodChainTest < MiniTest::Unit::TestCase
   end
 
   def test_cat
-    skip
     expected = "I know an old lady who swallowed a cat.\n" +
       "Imagine that, to swallow a cat!\n" +
       "She swallowed the cat to catch the bird.\n" +
@@ -48,7 +47,6 @@ class FoodChainTest < MiniTest::Unit::TestCase
   end
 
   def test_dog
-    skip
     expected = "I know an old lady who swallowed a dog.\n" +
       "What a hog, to swallow a dog!\n" +
       "She swallowed the dog to catch the cat.\n" +
@@ -61,7 +59,6 @@ class FoodChainTest < MiniTest::Unit::TestCase
   end
 
   def test_goat
-    skip
     expected = "I know an old lady who swallowed a goat.\n" +
       "Just opened her throat and swallowed a goat!\n" +
       "She swallowed the goat to catch the dog.\n" +
@@ -75,7 +72,6 @@ class FoodChainTest < MiniTest::Unit::TestCase
   end
 
   def test_cow
-    skip
     expected = "I know an old lady who swallowed a cow.\n" +
       "I don't know how she swallowed a cow!\n" +
       "She swallowed the cow to catch the goat.\n" +
@@ -90,7 +86,6 @@ class FoodChainTest < MiniTest::Unit::TestCase
   end
 
   def test_horse
-    skip
     expected = "I know an old lady who swallowed a horse.\n" +
       "She's dead, of course!\n"
     assert_equal expected, song.verse(8)
