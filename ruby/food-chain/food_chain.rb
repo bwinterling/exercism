@@ -2,11 +2,15 @@ require 'pry'
 
 class FoodChainSong
   def verse(number)
-    Verse.new(number).build
+    Verse.new(number).assemble
   end
 
   def verses(first, last)
     (first..last).each_with_object("") { |n, lyrics| lyrics << verse(n) + "\n" }
+  end
+
+  def sing
+    verses(1, 8)
   end
 end
 
@@ -18,7 +22,7 @@ class Verse
     @intro = "I know an old lady who swallowed a #{animal}.\n"
   end
 
-  def build
+  def assemble
     intro + exclamation + reason + close
   end
 
