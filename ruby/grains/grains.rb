@@ -1,9 +1,11 @@
 class Grains
-  def square(id)
-    id == 1 ? 1 : square(id - 1) * 2
+  def square(num)
+    2**(num-1)
   end
 
   def total
-    (1..64).inject { |sum, num| sum += square(num) }
+    (2**64)-1
   end
 end
+
+
