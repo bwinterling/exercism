@@ -1,20 +1,25 @@
 require 'pry'
 
 class FoodChainSong
-  attr_reader :verse_number, :animal
-
   def verse(number)
+    Verse.new(number).build
+  end
+
+  def verses(first, last)
+    (first..last).each_with_object("") { |n, lyrics| lyrics << verse(n) + "\n" }
+  end
+end
+
+class Verse
+  attr_reader :verse_number, :animal, :intro
+  def initialize(number)
     @verse_number = number
     @animal = Animal.for(verse_number)
-    assemble_parts
+    @intro = "I know an old lady who swallowed a #{animal}.\n"
   end
 
-  def assemble_parts
+  def build
     intro + exclamation + reason + close
-  end
-
-  def intro
-    "I know an old lady who swallowed a #{animal}.\n"
   end
 
   def exclamation
@@ -31,16 +36,15 @@ class FoodChainSong
   end
 
   def reason
-    {
-      1 => "",
-      2 => "",
-      3 => "She swallowed the bird to catch the spider that wriggled and jiggled and tickled inside her.\n",
-      4 => "She swallowed the cat to catch the bird.\nShe swallowed the bird to catch the spider that wriggled and jiggled and tickled inside her.\n",
-      5 => "She swallowed the dog to catch the cat.\nShe swallowed the cat to catch the bird.\nShe swallowed the bird to catch the spider that wriggled and jiggled and tickled inside her.\n",
-      6 => "She swallowed the goat to catch the dog.\nShe swallowed the dog to catch the cat.\nShe swallowed the cat to catch the bird.\nShe swallowed the bird to catch the spider that wriggled and jiggled and tickled inside her.\n",
-      7 => "She swallowed the cow to catch the goat.\nShe swallowed the goat to catch the dog.\nShe swallowed the dog to catch the cat.\nShe swallowed the cat to catch the bird.\nShe swallowed the bird to catch the spider that wriggled and jiggled and tickled inside her.\n",
-      8 => ""
-    }[verse_number]
+    reason = ""
+    if verse_number > 2 && verse_number < 8
+      (verse_number - 2).times do |n|
+        reason.prepend "She swallowed the #{Animal.for(n + 3)} to catch the #{Animal.for(n + 2)}.\n"
+      end
+      reason.chomp!(".\n")
+      reason << " that wriggled and jiggled and tickled inside her.\n"
+    end
+    reason
   end
 
   def close
