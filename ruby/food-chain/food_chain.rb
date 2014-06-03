@@ -15,16 +15,20 @@ class FoodChainSong
 end
 
 class Verse
+  ANIMALS = ["fly", "spider", "bird", "cat", "dog", "goat", "cow", "horse"]
+
   attr_reader :verse_number, :animal, :intro
   def initialize(number)
     @verse_number = number
-    @animal = Animal.for(verse_number)
+    @animal = ANIMALS[(verse_number - 1)]
     @intro = "I know an old lady who swallowed a #{animal}.\n"
   end
 
   def assemble
     intro + exclamation + reason + close
   end
+
+private
 
   def exclamation
     {
@@ -43,7 +47,7 @@ class Verse
     reason = ""
     if verse_number > 2 && verse_number < 8
       (verse_number - 2).times do |n|
-        reason.prepend "She swallowed the #{Animal.for(n + 3)} to catch the #{Animal.for(n + 2)}.\n"
+        reason.prepend "She swallowed the #{ANIMALS[n + 2]} to catch the #{ANIMALS[n + 1]}.\n"
       end
       reason.chomp!(".\n")
       reason << " that wriggled and jiggled and tickled inside her.\n"
@@ -57,20 +61,5 @@ class Verse
     close << "I don't know why she swallowed the fly. Perhaps she'll die." if verse_number < 8
     close << "She's dead, of course!" if verse_number == 8
     close + "\n"
-  end
-end
-
-class Animal
-  def self.for(verse)
-    {
-      1 => "fly",
-      2 => "spider",
-      3 => "bird",
-      4 => "cat",
-      5 => "dog",
-      6 => "goat",
-      7 => "cow",
-      8 => "horse"
-    }[verse]
   end
 end
